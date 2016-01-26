@@ -21,3 +21,18 @@ body {
   display: table;
   clear: both;
 }
+#graph1 .choice {
+    float: left;
+    font-family: arial;
+    font-size: 1.5em;
+    min-width: 200px;
+    text-align: right;
+    margin: 8px 5px;
+}
+#graph1 .bar {
+    width: 0;
+    height: 35px;
+    background-color: coral;
+    margin: 5px;
+    float: left;
+}

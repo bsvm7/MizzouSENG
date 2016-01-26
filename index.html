@@ -14,6 +14,8 @@
         
         var url = "http://elections.huffingtonpost.com/pollster/api/charts/2016-national-gop-primary";
         
+
+        
         $.ajax(url, {
             dataType: "jsonp",
             jsonpCallback: "pollsterCallback",
@@ -39,6 +41,41 @@
                 
             }
         });
+        
+    </script>
+    
+        <div id="graph1"></div>
+        <script>
+        
+
+        var url1="http://elections.huffingtonpost.com/pollster/api/charts/2016-national-democratic-primary";
+        
+        $.ajax(url1, {
+            dataType: "jsonp",
+            jsonpCallback: "pollsterCallback",
+            cache: true,
+            success: function(data) {
+                
+                var candidateBar = d3.select("#graph1").selectAll("div").data(data.estimates),
+                    candidateWrapper = candidateBar.enter().append("div").classed("group", true);
+                
+                candidateWrapper.append("div")
+                    .classed("choice", true)
+                    .text(function(candidate) {
+                        return candidate.choice + " " + candidate.value + "%";
+                    });
+                
+                candidateWrapper.append("div")
+                    .classed("bar", true)
+                    .transition()
+                    .duration(1000)
+                    .style("width", function(candidate) {
+                        return candidate.value * 10 + "px";
+                    });
+                
+            }
+        });
+        
     </script>
 </body>
 </html>
